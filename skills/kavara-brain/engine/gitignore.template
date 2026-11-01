@@ -1,0 +1,60 @@
+# ─────────────────────────────────────────────────────────────────────
+#  Second Brain: git tracks the PUBLIC ENGINE ONLY
+#
+#  Allowlist: ignore EVERYTHING, then re-include only the engine files.
+#  Your raw/, wiki/, agents.md and anything else you create stay private
+#  by default. You'd have to add them here on purpose to commit them.
+#  (gitignore comments must sit on their own line, never after a pattern.)
+# ─────────────────────────────────────────────────────────────────────
+
+/*
+
+# Public engine (safe to share)
+!/.gitignore
+!/.github/
+!/README.md
+!/LICENSE
+!/package.json
+!/docs/
+!/prompts/
+!/scripts/
+!/templates/
+!/example/
+
+# ─── Private: listed explicitly as a second layer, in case the allowlist is ever removed ───
+# your sources: voice dumps, CVs, exports (may contain logins!)
+/raw/
+# your compiled knowledge
+/wiki/
+# your personal operating manual + Claude Code pointer
+/agents.md
+/CLAUDE.md
+# vault settings + recently opened files (reveal note names)
+/.obsidian/
+/example/.obsidian/
+# wiki-bundle.md = your ENTIRE wiki in one file
+/.kb/
+/example/.kb/
+# Obsidian's deleted notes
+/.trash/
+# Notion / Google / other exports
+*.zip
+
+# ─── Secrets: never commit, even inside allowed folders ───
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*secret*
+*credential*
+*password*
+id_rsa*
+
+# ─── Junk ───
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini

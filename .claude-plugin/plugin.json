@@ -1,0 +1,10 @@
+{
+  "name": "kavara-brain",
+  "version": "0.1.0",
+  "description": "Kavara Brain for Claude: a privacy-first, self-improving LLM second brain (Karpathy method) with install/compile/ask/file-back/check/research/publish/weekly modes, an independent auditor agent, and guard hooks.",
+  "author": { "name": "Danjuma Ashiwaju-Garba", "url": "https://kavaradigital.com" },
+  "homepage": "https://github.com/danju4rizzl/kavara-brain-claude",
+  "repository": "https://github.com/danju4rizzl/kavara-brain-claude",
+  "license": "MIT",
+  "keywords": ["second-brain", "knowledge-base", "obsidian", "karpathy", "wiki", "privacy", "kavara"]
+}

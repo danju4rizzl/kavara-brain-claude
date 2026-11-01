@@ -1,0 +1,16 @@
+{
+  "name": "second-brain",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Privacy-focused, self-improving LLM knowledge base (Karpathy method): raw → compile → view → query → file back → lint.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "index": "node scripts/kb.mjs index",
+    "lint": "node scripts/kb.mjs lint --log",
+    "bundle": "node scripts/kb.mjs bundle",
+    "stats": "node scripts/kb.mjs stats",
+    "test": "node scripts/kb.mjs index --root example && node scripts/kb.mjs lint --root example"
+  }
+}

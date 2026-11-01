@@ -1,0 +1,12 @@
+{
+  "name": "kavara-brain",
+  "owner": { "name": "Danjuma Ashiwaju-Garba", "url": "https://github.com/danju4rizzl" },
+  "plugins": [
+    {
+      "name": "kavara-brain",
+      "source": "./",
+      "description": "Privacy-first, self-improving LLM second brain for Claude (Karpathy method) with guard hooks.",
+      "version": "0.1.0"
+    }
+  ]
+}
