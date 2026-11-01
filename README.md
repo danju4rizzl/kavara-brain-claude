@@ -6,7 +6,7 @@ Part of the **Kavara Brain** suite by [Kavara Digital Global](https://kavaradigi
 
 | Product | What it is |
 |---|---|
-| [Kavara Brain Engine](https://github.com/danju4rizzl/second-brain) | The tool-agnostic core: prompts, scripts, templates. Works with any AI coding tool. |
+| [Kavara Brain Engine](https://github.com/danju4rizzl/second-brain) | The tool-agnostic core and **the one link to share**: prompts, scripts, templates. Works with any AI coding tool. |
 | **Kavara Brain for Claude** (this repo) | The engine plus a Claude skill, slash commands, an auditor agent and guard hooks |
 | Kavara Brain Guard *(planned)* | MCP server + git hooks: the same guards for Cursor, Antigravity, Codex, Grok Build |
 | Kavara Brain Sync *(planned)* | Encrypted private sync of your notes across computers |
@@ -44,9 +44,11 @@ Part of the **Kavara Brain** suite by [Kavara Digital Global](https://kavaradigi
 **Claude Code**
 
 ```
-/plugin marketplace add danju4rizzl/kavara-brain-claude
+/plugin marketplace add danju4rizzl/second-brain
 /plugin install kavara-brain@kavara-brain
 ```
+
+(The engine repo is the single front door; `/plugin marketplace add danju4rizzl/kavara-brain-claude` also works.)
 
 Then open (or create) a folder and run `/brain-install`.
 
@@ -64,10 +66,14 @@ Then open (or create) a folder and run `/brain-install`.
 
 Cursor, Codex, Antigravity, Grok Build and others can use the [engine](https://github.com/danju4rizzl/second-brain) directly (`AGENTS.md` + prompts + scripts). The hard guards for those tools are coming in **Kavara Brain Guard**.
 
+## Docs
+
+- [FAQ & troubleshooting](docs/FAQ.md) · [Changelog](CHANGELOG.md) · [Security & privacy reports](SECURITY.md) · [Release notes v0.1.0](docs/releases/v0.1.0.md)
+
 ## Development
 
 ```bash
-node test/run.mjs     # 30 guard tests on a throwaway vault
+node test/run.mjs     # 32 guard tests on a throwaway vault
 ```
 
 The engine is vendored, unmodified, in `skills/kavara-brain/engine/` (see `ENGINE_VERSION`). To update it, copy a released engine version over that folder (rename `.gitignore` to `gitignore.template`), bump `ENGINE_VERSION` and the plugin version, and run the tests.
