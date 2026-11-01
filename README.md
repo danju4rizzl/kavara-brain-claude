@@ -6,7 +6,7 @@ Part of the **Kavara Brain** suite by [Kavara Digital Global](https://kavaradigi
 
 | Product | What it is |
 |---|---|
-| [Kavara Brain Engine](https://github.com/danju4rizzl/second-brain) | The tool-agnostic core and **the one link to share**: prompts, scripts, templates. Works with any AI coding tool. |
+| [Kavara Brain Engine](https://github.com/danju4rizzl/second-brain-core) | The tool-agnostic core and **the one link to share**: prompts, scripts, templates. Works with any AI coding tool. |
 | **Kavara Brain for Claude** (this repo) | The engine plus a Claude skill, slash commands, an auditor agent and guard hooks |
 | Kavara Brain Guard *(planned)* | MCP server + git hooks: the same guards for Cursor, Antigravity, Codex, Grok Build |
 | Kavara Brain Sync *(planned)* | Encrypted private sync of your notes across computers |
@@ -44,7 +44,7 @@ Part of the **Kavara Brain** suite by [Kavara Digital Global](https://kavaradigi
 **Claude Code**
 
 ```
-/plugin marketplace add danju4rizzl/second-brain
+/plugin marketplace add danju4rizzl/second-brain-core
 /plugin install kavara-brain@kavara-brain
 ```
 
