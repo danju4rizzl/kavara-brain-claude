@@ -78,6 +78,10 @@ node test/run.mjs     # 32 guard tests on a throwaway vault
 
 The engine is vendored, unmodified, in `skills/brain/engine/` (see `ENGINE_VERSION`). To update it, copy a released engine version over that folder (rename `.gitignore` to `gitignore.template`), bump `ENGINE_VERSION` and the plugin version, and run the tests.
 
+### Releasing
+
+Releases are automatic. Add a `## [x.y.z] - YYYY-MM-DD` entry at the top of `CHANGELOG.md`, set the same version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`, and push to `main`. The [release workflow](.github/workflows/release.yml) runs the tests, builds `kv-brain.plugin`, tags `vx.y.z` and publishes a GitHub release with the file attached. The notes come from `docs/releases/vx.y.z.md` if it exists, otherwise from the CHANGELOG entry. Pushes that don't change the version do nothing.
+
 ## License
 
 [MIT](LICENSE) © 2026 Danjuma Ashiwaju-Garba

@@ -1,0 +1,99 @@
+# Publishes a GitHub release automatically when you push a new version to main.
+#
+# How to release:
+#   1. Add a "## [x.y.z] - YYYY-MM-DD" entry at the top of CHANGELOG.md
+#      (an "## [Unreleased]" section above it is fine; it's skipped).
+#   2. Set the same version in .claude-plugin/plugin.json and .claude-plugin/marketplace.json.
+#   3. Optional: write docs/releases/vx.y.z.md. It becomes the release notes;
+#      without it, the CHANGELOG entry is used.
+#   4. Push to main. This workflow runs the tests, builds kv-brain.plugin,
+#      tags vx.y.z and publishes the release with the file attached.
+# Pushes that don't change the version do nothing.
+
+name: release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Read version
+        id: version
+        run: |
+          ver=$(grep -m1 -oP '^## \[\K[0-9]+\.[0-9]+\.[0-9]+(?=\])' CHANGELOG.md || true)
+          if [ -z "$ver" ]; then
+            echo "::error file=CHANGELOG.md::No '## [x.y.z]' version heading found"; exit 1
+          fi
+          plugin=$(node -p "require('./.claude-plugin/plugin.json').version")
+          market=$(node -p "require('./.claude-plugin/marketplace.json').plugins.find(p => p.name === require('./.claude-plugin/plugin.json').name).version")
+          if [ "$plugin" != "$ver" ] || [ "$market" != "$ver" ]; then
+            echo "::error::Version mismatch: CHANGELOG.md=$ver, plugin.json=$plugin, marketplace.json=$market. Make them match."
+            exit 1
+          fi
+          echo "version=$ver" >> "$GITHUB_OUTPUT"
+          if gh release view "v$ver" >/dev/null 2>&1; then
+            echo "Release v$ver already exists. Nothing to do."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run tests
+        if: steps.version.outputs.exists == 'false'
+        run: node test/run.mjs
+
+      - name: Write release notes
+        if: steps.version.outputs.exists == 'false'
+        env:
+          VER: ${{ steps.version.outputs.version }}
+        run: |
+          if [ -f "docs/releases/v$VER.md" ]; then
+            # Drop the first "# Title" line; the release title replaces it.
+            awk 'NR==1 && /^# / {next} {print}' "docs/releases/v$VER.md" > "$RUNNER_TEMP/notes.md"
+          else
+            awk -v v="$VER" '
+              index($0, "## [" v "]") == 1 {on=1; next}
+              on && /^## \[/ {exit}
+              on {print}' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          fi
+          if ! grep -q '[^[:space:]]' "$RUNNER_TEMP/notes.md"; then
+            echo "::error::Release notes for v$VER are empty"; exit 1
+          fi
+          cat "$RUNNER_TEMP/notes.md"
+
+      - name: Build kv-brain.plugin
+        if: steps.version.outputs.exists == 'false'
+        run: |
+          git archive --format=zip -o kv-brain.plugin HEAD -- . ':!.github' ':!test'
+          unzip -l kv-brain.plugin | grep -q '.claude-plugin/plugin.json'
+
+      - name: Publish release
+        if: steps.version.outputs.exists == 'false'
+        env:
+          VER: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "v$VER" kv-brain.plugin \
+            --target "$GITHUB_SHA" \
+            --title "Kavara Brain for Claude v$VER" \
+            --notes-file "$RUNNER_TEMP/notes.md"

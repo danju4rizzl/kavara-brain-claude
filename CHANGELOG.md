@@ -2,6 +2,11 @@
 
 All notable changes to Kavara Brain for Claude. Format: [Keep a Changelog](https://keepachangelog.com); versions follow [SemVer](https://semver.org).
 
+## [Unreleased]
+
+### Added
+- **Automatic releases:** `.github/workflows/release.yml` tags and publishes a GitHub release, with `kv-brain.plugin` attached, whenever a new version reaches `main`. Notes come from `docs/releases/vX.Y.Z.md`, else this CHANGELOG.
+
 ## [0.2.0] - 2026-11-03
 
 ### Changed (breaking: reinstall needed)
