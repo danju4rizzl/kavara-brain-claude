@@ -1,39 +1,48 @@
 # FAQ & Troubleshooting: Kavara Brain for Claude
 
-General questions (what to feed it, `[CONFIRM]`/`[SET]`, conflicts, Obsidian, privacy) are answered in the [engine FAQ](https://github.com/danju4rizzl/second-brain/blob/main/docs/FAQ.md). This page covers the plugin.
+General questions (what to feed it, `[CONFIRM]`/`[SET]`, conflicts, Obsidian, privacy) are answered in the [engine FAQ](https://github.com/danju4rizzl/second-brain-core/blob/main/docs/FAQ.md). This page covers the plugin.
 
 ## Install
 
 **What's the install command?**
 In Claude Code:
 ```
-/plugin marketplace add danju4rizzl/second-brain
-/plugin install kavara-brain@kavara-brain
+/plugin marketplace add danju4rizzl/second-brain-core
+/plugin install kv-brain@kavara
 ```
-(`/plugin marketplace add danju4rizzl/kavara-brain-claude` works too; both point to the same plugin.) Then open a folder and run `/brain-install`.
+(`/plugin marketplace add danju4rizzl/kavara-brain-claude` works too; both point to the same plugin.) Then open a folder and run `/kv-brain:install`.
 
 **Claude desktop app?**
-Download `kavara-brain.plugin` from [Releases](https://github.com/danju4rizzl/kavara-brain-claude/releases) and install it. Skills, commands and the auditor agent work; guard hooks may only partly work in the desktop app, so the rules are also built into the skill and your `agents.md`.
+Download `kv-brain.plugin` from [Releases](https://github.com/danju4rizzl/kavara-brain-claude/releases) and install it. Skills, commands and the auditor agent work; guard hooks may only partly work in the desktop app, so the rules are also built into the skill and your `agents.md`.
 
 **Do I also need to clone the engine?**
-No. The plugin carries a pinned copy of the engine and copies it into your folder during `/brain-install`.
+No. The plugin carries a pinned copy of the engine and copies it into your folder during `/kv-brain:install`.
+
+**I installed 0.1.0 (`/kavara-brain:brain-install`). How do I switch to the short names?**
+```
+/plugin uninstall kavara-brain@kavara-brain
+/plugin marketplace remove kavara-brain
+/plugin marketplace add danju4rizzl/second-brain-core
+/plugin install kv-brain@kavara
+```
+Your vaults don't change.
 
 **How do I update?**
-`/plugin marketplace update kavara-brain`, then reinstall or update the plugin. Your vault's own copy of the engine stays as it was; ask Claude to "update the engine files from the plugin" if you want the newer prompts and scripts.
+`/plugin marketplace update kavara`, then reinstall or update the plugin. Your vault's own copy of the engine stays as it was; ask Claude to "update the engine files from the plugin" if you want the newer prompts and scripts.
 
 ## Commands
 
 | Command | Use it when |
 |---|---|
-| `/brain-install` | Starting a new second brain in an empty or new folder |
-| `/brain-compile` | You've added files to `raw/` |
-| `/brain-import` | You have a Notion / Google Docs / other export |
-| `/brain-ask` | You want an answer from your wiki |
-| `/brain-file` | You want to keep an answer, decision or new fact |
-| `/brain-check` | Weekly, or after a big compile |
-| `/brain-research` | `wiki/gaps.md` has research questions |
-| `/brain-publish` | You want to share your *engine* (never your notes) on GitHub |
-| `/brain-weekly` | You want the check to run automatically |
+| `/kv-brain:install` | Starting a new second brain in an empty or new folder |
+| `/kv-brain:compile` | You've added files to `raw/` |
+| `/kv-brain:import` | You have a Notion / Google Docs / other export |
+| `/kv-brain:ask` | You want an answer from your wiki |
+| `/kv-brain:file` | You want to keep an answer, decision or new fact |
+| `/kv-brain:check` | Weekly, or after a big compile |
+| `/kv-brain:research` | `wiki/gaps.md` has research questions |
+| `/kv-brain:publish` | You want to share your *engine* (never your notes) on GitHub |
+| `/kv-brain:weekly` | You want the check to run automatically |
 
 You can also just ask in plain words ("compile my new notes"); the skill picks the mode.
 
@@ -67,7 +76,7 @@ No. Outside a vault every hook exits immediately without doing anything.
 
 ## Other AI tools
 
-Cursor, Codex, Antigravity and Grok Build users should use the [engine](https://github.com/danju4rizzl/second-brain) directly. Hard guards for those tools are planned in **Kavara Brain Guard**.
+Cursor, Codex, Antigravity and Grok Build users should use the [engine](https://github.com/danju4rizzl/second-brain-core) directly. Hard guards for those tools are planned in **Kavara Brain Guard**.
 
 ## Reporting problems
 

@@ -19,7 +19,7 @@ import { scan } from "./secrets.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PLUGIN_ROOT = process.env.CLAUDE_PLUGIN_ROOT || path.resolve(HERE, "..");
-const ENGINE_KB = path.join(PLUGIN_ROOT, "skills", "kavara-brain", "engine", "scripts", "kb.mjs");
+const ENGINE_KB = path.join(PLUGIN_ROOT, "skills", "brain", "engine", "scripts", "kb.mjs");
 const PRIVATE = [/^raw\//, /^wiki\//, /^agents\.md$/i, /^claude\.md$/i, /^\.kb\//, /^\.obsidian\//];
 const GENERATED = [/^wiki\/index\.md$/, /^wiki\/[^/]+\/agent\.md$/, /^wiki\/log\.md$/, /^wiki\/gaps\.md$/];
 
@@ -75,7 +75,7 @@ function sessionStart(input) {
   const text =
     `Kavara Brain vault detected at ${vault}.\nStatus: ${status}\n` +
     `Read agents.md first and follow it. raw/ is append-only; never copy passwords or keys into the wiki. ` +
-    `Use the kavara-brain skill for install/compile/ask/file-back/check/research/publish/weekly.` +
+    `Use the /kv-brain: commands (install, compile, import, ask, file, check, research, publish, weekly) or the brain skill.` +
     (lint && lint.errors?.length ? `\nFix lint errors before other wiki work: ${lint.errors.slice(0, 5).map((e) => `${e.page}: ${e.msg}`).join("; ")}` : "");
   process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: "SessionStart", additionalContext: text } }));
   ok();

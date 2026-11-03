@@ -32,7 +32,7 @@ Weekly Kavara Brain check for the vault at <vault>.
    pages not updated in 30+ days, top 5 open questions, and anything urgent (deadlines).
 ```
 
-If no scheduler is available, give the owner the script check (part 2) plus a one-line reminder to run `/brain-check` weekly.
+If no scheduler is available, give the owner the script check (part 2) plus a one-line reminder to run `/kv-brain:check` weekly.
 
 ## 4. Confirm
 

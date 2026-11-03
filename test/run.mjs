@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const GUARD = path.join(ROOT, "hooks", "guard.mjs");
-const ENGINE = path.join(ROOT, "skills", "kavara-brain", "engine");
+const ENGINE = path.join(ROOT, "skills", "brain", "engine");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "kb-test-"));
 const V = path.join(tmp, "vault");
 let pass = 0, fail = 0;

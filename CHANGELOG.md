@@ -2,6 +2,23 @@
 
 All notable changes to Kavara Brain for Claude. Format: [Keep a Changelog](https://keepachangelog.com); versions follow [SemVer](https://semver.org).
 
+## [0.2.0] - 2026-11-03
+
+### Changed (breaking: reinstall needed)
+- **Shorter names.** Plugin renamed `kavara-brain` → **`kv-brain`**, marketplace `kavara-brain` → **`kavara`**, skill `kavara-brain` → **`brain`**.
+- **Shorter commands.** `/brain-install` → **`/kv-brain:install`** (likewise `compile`, `import`, `ask`, `file`, `check`, `research`, `publish`, `weekly`).
+- Install is now `/plugin install kv-brain@kavara`.
+- Engine repo links point to `danju4rizzl/second-brain-core`.
+
+### Upgrading from 0.1.0
+```
+/plugin uninstall kavara-brain@kavara-brain
+/plugin marketplace remove kavara-brain
+/plugin marketplace add danju4rizzl/second-brain-core
+/plugin install kv-brain@kavara
+```
+Your vaults don't change.
+
 ## [0.1.0] - 2026-11-01
 
 ### Added

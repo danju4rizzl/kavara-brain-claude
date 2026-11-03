@@ -1,5 +1,5 @@
 ---
-name: kavara-brain
+name: brain
 description: Build and run a Karpathy-style, privacy-first LLM second brain (raw/ → compiled wiki/ → Obsidian), and run any of its modes. Use when the user wants to set up or install a second brain, knowledge base or Obsidian wiki; compile or import notes (Notion, Google Docs, voice dumps, CVs); ask questions from their wiki; file an answer back; run a health check or lint; research gaps; publish a clean engine to GitHub; or set up weekly automated checks. Also use whenever the working folder contains agents.md plus wiki/ and raw/.
 ---
 

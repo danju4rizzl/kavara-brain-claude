@@ -17,15 +17,15 @@ Part of the **Kavara Brain** suite by [Kavara Digital Global](https://kavaradigi
 
   | Command | Does |
   |---|---|
-  | `/brain-install` | Interviews you, copies the engine in, compiles your first wiki, writes your `agents.md` |
-  | `/brain-compile` | Turns new files in `raw/` into wiki pages (sources, open questions, conflicts) |
-  | `/brain-import` | Brings in Notion / Google Docs / other exports, with a credential sweep first |
-  | `/brain-ask` | Answers from the whole wiki with page citations |
-  | `/brain-file` | Saves an answer or decision back into the wiki (the self-improving loop) |
-  | `/brain-check` | Lint script + an independent **brain-auditor** agent review |
-  | `/brain-research` | Closes research gaps with web sources |
-  | `/brain-publish` | Makes a clean, engine-only copy safe for public GitHub |
-  | `/brain-weekly` | Schedules automatic weekly checks |
+  | `/kv-brain:install` | Interviews you, copies the engine in, compiles your first wiki, writes your `agents.md` |
+  | `/kv-brain:compile` | Turns new files in `raw/` into wiki pages (sources, open questions, conflicts) |
+  | `/kv-brain:import` | Brings in Notion / Google Docs / other exports, with a credential sweep first |
+  | `/kv-brain:ask` | Answers from the whole wiki with page citations |
+  | `/kv-brain:file` | Saves an answer or decision back into the wiki (the self-improving loop) |
+  | `/kv-brain:check` | Lint script + an independent **brain-auditor** agent review |
+  | `/kv-brain:research` | Closes research gaps with web sources |
+  | `/kv-brain:publish` | Makes a clean, engine-only copy safe for public GitHub |
+  | `/kv-brain:weekly` | Schedules automatic weekly checks |
 
 - **Guard hooks** (Claude Code), active only inside a vault:
 
@@ -45,12 +45,12 @@ Part of the **Kavara Brain** suite by [Kavara Digital Global](https://kavaradigi
 
 ```
 /plugin marketplace add danju4rizzl/second-brain-core
-/plugin install kavara-brain@kavara-brain
+/plugin install kv-brain@kavara
 ```
 
 (The engine repo is the single front door; `/plugin marketplace add danju4rizzl/kavara-brain-claude` also works.)
 
-Then open (or create) a folder and run `/brain-install`.
+Then open (or create) a folder and run `/kv-brain:install`.
 
 **Claude desktop app:** install the `.plugin` file from the [Releases](https://github.com/danju4rizzl/kavara-brain-claude/releases) page. The skill, commands and agent work there; hook support in the desktop app may be partial, so the same rules are also written into the skill and your `agents.md`.
 
@@ -64,11 +64,11 @@ Then open (or create) a folder and run `/brain-install`.
 
 ## For other AI tools
 
-Cursor, Codex, Antigravity, Grok Build and others can use the [engine](https://github.com/danju4rizzl/second-brain) directly (`AGENTS.md` + prompts + scripts). The hard guards for those tools are coming in **Kavara Brain Guard**.
+Cursor, Codex, Antigravity, Grok Build and others can use the [engine](https://github.com/danju4rizzl/second-brain-core) directly (`AGENTS.md` + prompts + scripts). The hard guards for those tools are coming in **Kavara Brain Guard**.
 
 ## Docs
 
-- [FAQ & troubleshooting](docs/FAQ.md) · [Changelog](CHANGELOG.md) · [Security & privacy reports](SECURITY.md) · [Release notes v0.1.0](docs/releases/v0.1.0.md)
+- [FAQ & troubleshooting](docs/FAQ.md) · [Changelog](CHANGELOG.md) · [Security & privacy reports](SECURITY.md) · [Release notes v0.2.0](docs/releases/v0.2.0.md)
 
 ## Development
 
@@ -76,7 +76,7 @@ Cursor, Codex, Antigravity, Grok Build and others can use the [engine](https://g
 node test/run.mjs     # 32 guard tests on a throwaway vault
 ```
 
-The engine is vendored, unmodified, in `skills/kavara-brain/engine/` (see `ENGINE_VERSION`). To update it, copy a released engine version over that folder (rename `.gitignore` to `gitignore.template`), bump `ENGINE_VERSION` and the plugin version, and run the tests.
+The engine is vendored, unmodified, in `skills/brain/engine/` (see `ENGINE_VERSION`). To update it, copy a released engine version over that folder (rename `.gitignore` to `gitignore.template`), bump `ENGINE_VERSION` and the plugin version, and run the tests.
 
 ## License
 
